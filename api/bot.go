@@ -28,23 +28,33 @@ func Bot(w http.ResponseWriter, r *http.Request) {
 
 	log.Printf("[%s] %s R29", update.Message.From.UserName, update.Message.Text)
 
-	if update.Message.IsCommand() {
-		text := ""
-		switch update.Message.Command() {
-		case "hola":
-			text = "someeeeeee"
-		case "hej":
-			text = fmt.Sprintf("→ something")
-		default:
-			text = "fallback greeting"
-		}
-		data := Response{Msg: text,
-			Method: "sendMessage",
-			ChatID: update.Message.Chat.ID}
+	text := "hej hej"
+	data := Response{Msg: text,
+		Method: "sendMessage",
+		ChatID: update.Message.Chat.ID}
 
-		msg, _ := json.Marshal(data)
-		log.Printf("Response %s", string(msg))
-		w.Header().Add("Content-Type", "application/json")
-		fmt.Fprintf(w, string(msg))
-	}
+	msg, _ := json.Marshal(data)
+	log.Printf("Response %s", string(msg))
+	w.Header().Add("Content-Type", "application/json")
+	fmt.Fprintf(w, string(msg))
+
+	//if update.Message.IsCommand() {
+	//	text := "hej hej"
+	//	switch update.Message.Command() {
+	//	case "hola":
+	//		text = "someeeeeee"
+	//	case "hej":
+	//		text = fmt.Sprintf("→ something")
+	//	default:
+	//		text = "fallback greeting"
+	//	}
+	//	data := Response{Msg: text,
+	//		Method: "sendMessage",
+	//		ChatID: update.Message.Chat.ID}
+	//
+	//	msg, _ := json.Marshal(data)
+	//	log.Printf("Response %s", string(msg))
+	//	w.Header().Add("Content-Type", "application/json")
+	//	fmt.Fprintf(w, string(msg))
+	//}
 }

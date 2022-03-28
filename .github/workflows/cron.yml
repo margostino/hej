@@ -1,0 +1,13 @@
+name: 2-minute-cron
+on:
+  schedule:
+    - cron: '*/2 * * * *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Hej Job API route
+        run: |
+          curl --request POST \
+          --url 'https://hej-margostino.vercel.app/api/job' \
+          --header 'Authorization: Bearer ${{ secrets.HEJ_JOB_SECRET }}'

@@ -15,7 +15,7 @@ type Response struct {
 	Method string `json:"method"`
 }
 
-func Echo(w http.ResponseWriter, r *http.Request) {
+func Bot(w http.ResponseWriter, r *http.Request) {
 	//token := os.Getenv("BOT_TOKEN")
 	//bot, error := tgbotapi.NewBotAPI(token)
 

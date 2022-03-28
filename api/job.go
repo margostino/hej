@@ -16,11 +16,12 @@ func Job(w http.ResponseWriter, r *http.Request) {
 	chatId, _ := strconv.ParseInt(os.Getenv("CHAT_ID"), 10, 64)
 
 	log.Printf("logging start")
-	fmt.Println("printing start")
+	log.Printf("Se - " + jobSecret)
+	log.Printf("Ch - " + os.Getenv("CHAT_ID"))
 
 	if r.Method == "POST" {
 		requestSecret := r.Header.Get("Authorization")
-
+		log.Printf("ReqS - " + requestSecret)
 		if requestSecret == fmt.Sprintf("Bearer %s", jobSecret) {
 			bot, error := tgbotapi.NewBotAPI(botToken)
 
@@ -36,10 +37,13 @@ func Job(w http.ResponseWriter, r *http.Request) {
 			//msg.ReplyToMessageID = update.Message.MessageID
 			bot.Send(msg)
 
+		} else {
+			log.Printf("Job secret is wrong!")
 		}
+	} else {
+		log.Printf("HTTP Method is wrong. It should be POST")
 	}
 
 	log.Printf("logging end")
-	fmt.Println("printing end")
 
 }

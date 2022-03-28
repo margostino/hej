@@ -25,18 +25,18 @@ func Echo(w http.ResponseWriter, r *http.Request) {
 	if err := json.Unmarshal(body, &update); err != nil {
 		log.Fatal("Error updating →", err)
 	}
-	
-	log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
+
+	log.Printf("[%s] %s R29", update.Message.From.UserName, update.Message.Text)
 
 	if update.Message.IsCommand() {
 		text := ""
 		switch update.Message.Command() {
-		case "kk":
+		case "hola":
 			text = "someeeeeee"
-		case "kekeda":
+		case "hej":
 			text = fmt.Sprintf("→ something")
 		default:
-			text = "Usa /kk para lo que queda para el próximo hito, /kekeda para + detalle"
+			text = "fallback greeting"
 		}
 		data := Response{Msg: text,
 			Method: "sendMessage",

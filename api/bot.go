@@ -16,9 +16,6 @@ type Response struct {
 }
 
 func Bot(w http.ResponseWriter, r *http.Request) {
-	//token := os.Getenv("BOT_TOKEN")
-	//bot, error := tgbotapi.NewBotAPI(token)
-
 	defer r.Body.Close()
 	body, _ := ioutil.ReadAll(r.Body)
 	var update tgbotapi.Update
@@ -28,7 +25,7 @@ func Bot(w http.ResponseWriter, r *http.Request) {
 
 	log.Printf("[%s] %s R29", update.Message.From.UserName, update.Message.Text)
 
-	text := "hej hej"
+	text := "You will never walk alone!"
 	data := Response{Msg: text,
 		Method: "sendMessage",
 		ChatID: update.Message.Chat.ID}
